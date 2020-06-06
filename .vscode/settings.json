@@ -1,0 +1,20 @@
+{
+  "editor.fontSize": 12,
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 4,
+  "files.autoSave": "onFocusChange",
+  "python.pythonPath": "/usr/local/bin/python3",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.lintOnSave": true,
+  "python.testing.unittestEnabled": true,
+  "python.testing.pytestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.showExecutionMessage": false,
+  "code-runner.executorMap": {
+    "python": "python3 -u"
+  },
+  "workbench.panel.defaultLocation": "right"
+}

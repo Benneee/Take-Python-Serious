@@ -14,7 +14,7 @@ print('Your BMI is a fraction of your weight and twice your height');
 bmi = weight/(height ** 2);
 bmi = round(bmi, 1);
 
-print('Your BMI value is ', bmi);
+print(f'Your BMI value is {bmi}');
 
 if bmi < 18.5:
     print('Dear', name, 'you are underweight! Eat some more food and eat right please');

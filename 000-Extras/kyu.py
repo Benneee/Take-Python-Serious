@@ -21,3 +21,4 @@ print(f"""
 Alright, so you said {likes} about liking rice like me. You live
 in {lives}. I think I know where that is and you use a {phone} phone, Nice! 
 """)
+

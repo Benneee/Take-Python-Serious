@@ -6,6 +6,7 @@ class Guitar():
 acoustic = Guitar()
 electric = Guitar()
 
+# This style of attribute assignment is anti-pattern
 acoustic.wood = 'Mahogany'
 acoustic.strings = 6
 acoustic.year = 1990

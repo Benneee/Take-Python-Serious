@@ -13,3 +13,4 @@ class Guitar():
 
 # By instantiating this new object off our Guitar class, the dunder init method runs first
 acoustic = Guitar()
+print(acoustic)

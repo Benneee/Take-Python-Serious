@@ -11,7 +11,7 @@ class Animal():
 
 class Dog(Animal):
   # The super method returns the parent class for us and gives us the ability to add more
-  # functionalities to the parent class
+  # functionalities to the parent class but only functional/exclusive on the child class
   def __init__(self, name, breed):
     super().__init__(name) # This line invokes the dunder init method of the Animal class
     self.breed = breed # This method only exists on Dog objects

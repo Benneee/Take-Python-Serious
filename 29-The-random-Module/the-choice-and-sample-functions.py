@@ -14,6 +14,7 @@ print(choice(name_tuple))
 
 # The sample method allows us to extract more than one element from a sequence - returns a list
 lottery_numbers = [randint(1, 50) for value in range(50)]
-# print(lottery_numbers)
+print(lottery_numbers)
 print(sample(lottery_numbers, 5))
 
+# print(choice([])) # Throws an Index Error

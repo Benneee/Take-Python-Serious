@@ -22,5 +22,17 @@ some_time = time(9, 45, 23)
 def one_from_two(date_object, time_object):
     return datetime.combine(date_object, time_object)
 
+# Longer approach
+# def one_from_two(date_object, time_object):
+#     year = date_object.year
+#     month = date_object.month
+#     day = date_object.day
+
+#     hour = time_object.hour
+#     minute = time_object.minute
+#     second = time_object.second
+
+#     return datetime(year, month, day, hour, minute, second)
+
 
 print(one_from_two(some_date, some_time))

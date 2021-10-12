@@ -15,3 +15,13 @@ expressions = ["lol", "rofl", "lmao"]
 # Return a list with all the characters above in uppercase
 expressions_upper = [e.upper() for e in expressions]
 print(expressions_upper)
+
+profiles = [
+    {'email': 'ali@yopmail.com', 'first_name': 'ali', 'last_name': 'bara'},
+    {'email': 'sam@yopmail.com', 'first_name': 'sam', 'last_name': 'una'},
+    {'email': 'tom@yopmail.com', 'first_name': 'tom', 'last_name': 'riddle'},
+    {'email': 'bimbo@yopmail.com', 'first_name': 'bimbo', 'last_name': 'thomas'}
+]
+
+emails = [obj['email'] for obj in profiles]
+print('emails: ', emails)

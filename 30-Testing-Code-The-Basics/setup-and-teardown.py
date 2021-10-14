@@ -30,6 +30,9 @@ class Restaurant():
 class TestRestaurant(unittest.TestCase):
     # These execute before and after each test respectively
     # setUp sets up every necessary functionality for a test
+
+    # The method names, setUp and tearDown, need to be written the way they've been written below
+    # because they override methods with the same name inherited from the TestCase class
     def setUp(self):
         print('Runs before each test')
         address = Address(city = 'Ogudu', state = 'Lagos')

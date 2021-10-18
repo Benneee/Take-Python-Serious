@@ -1,4 +1,3 @@
-# import urllib.request
 from urllib.request import urlopen
 
 class WebRequest():

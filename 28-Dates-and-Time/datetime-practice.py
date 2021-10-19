@@ -7,7 +7,8 @@ print(friday)
 fulldate = today.strftime("%B %d, %Y")
 print(fulldate)
 
-day_of_year = today.strftime("%j")
+# day_of_year = today.strftime("%A") # Complete day text
+day_of_year = today.strftime("%A") # Substring of day
 print(day_of_year)
 
 week_of_year = today.strftime("%W")

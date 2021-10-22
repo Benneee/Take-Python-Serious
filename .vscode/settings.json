@@ -2,7 +2,6 @@
   "editor.fontSize": 12,
   "editor.minimap.enabled": false,
   "editor.tabSize": 4,
-  "files.autoSave": "onFocusChange",
   "python.pythonPath": "/usr/local/bin/python3",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,

@@ -9,6 +9,10 @@ class CardTest(unittest.TestCase):
         card = Card(rank = "2", suit = "Clubs")
         self.assertEqual(card.suit, "Clubs")
 
+    def test_knows_its_rank_index(self):
+        card = Card(rank = "10", suit = "Hearts")
+        self.assertEqual(card.rank_index, 8)
+
     def test_has_string_representation(self):
         card = Card("5", "Diamonds")
         # str(card) should give us the string representation of the card object as created in the Card class with the dunder string, __str__, method

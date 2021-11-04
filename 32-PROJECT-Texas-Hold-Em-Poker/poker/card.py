@@ -13,13 +13,6 @@ class Card():
             for suit in cls.SUITS
             for rank in cls.RANKS
         ]
-        
-        # cards = []
-        # for suit in cls.SUITS:
-        #     for rank in cls.RANKS:
-        #         cards.append(cls(rank = rank, suit = suit))
-            
-        # return cards
 
     def __init__(self, rank, suit):
         if rank not in self.RANKS:
@@ -33,6 +26,7 @@ class Card():
             )
 
         self.rank = rank
+        self.rank_index = self.RANKS.index(rank)
         self.suit = suit
 
     def __str__(self):
@@ -45,6 +39,4 @@ class Card():
         return self.rank == other.rank and self.suit == other.suit
 
     def __lt__(self, other):
-        current_card_rank_index = self.RANKS.index(self.rank)
-        other_card_rank_index = self.RANKS.index(other.rank)
-        return current_card_rank_index < other_card_rank_index
+        return self.rank_index < other.rank_index

@@ -122,3 +122,20 @@ class HandTest(unittest.TestCase):
             hand.best_rank(),
             "Flush"
         )
+
+    def test_figures_out_full_house_is_best_rank(self):
+        # Full house = 3 of 1 rank, 2 of another
+        cards = [
+            Card(rank = "3", suit = "Clubs"),
+            Card(rank = "3", suit = "Hearts"),
+            Card(rank = "3", suit = "Spades"),
+            Card(rank = "9", suit = "Diamonds"),
+            Card(rank = "9", suit = "Spades")
+        ]
+
+        hand = Hand(cards = cards)
+
+        self.assertEqual(
+            hand.best_rank(),
+            "Full House"
+        )

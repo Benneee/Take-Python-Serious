@@ -22,6 +22,13 @@ class HandTest(unittest.TestCase):
             ]
         )
 
+    def test_figures_out_no_card_is_best_rank(self):
+        hand = Hand(cards = [])
+        self.assertEqual(
+            hand.best_rank(),
+            "No Cards"
+        )
+
     def test_figures_out_high_card_is_best_card(self):
         cards = [
             Card(rank= "Ace", suit= "Diamonds"),
@@ -155,4 +162,38 @@ class HandTest(unittest.TestCase):
         self.assertEqual(
             hand.best_rank(),
             "Four of a Kind"
+        )
+
+    def test_figures_out_straight_flush_is_best_rank(self):
+        # Straight flush = 5 of the same suit
+        cards = [
+            Card(rank = "3", suit = "Clubs"),
+            Card(rank = "4", suit = "Clubs"),
+            Card(rank = "5", suit = "Clubs"),
+            Card(rank = "6", suit = "Clubs"),
+            Card(rank = "7", suit = "Clubs")
+        ]
+
+        hand = Hand(cards = cards)
+
+        self.assertEqual(
+            hand.best_rank(),
+            "Straight Flush"
+        )
+
+    def test_figures_out_royal_flush_is_best_rank(self):
+        # Royal flush is a straight flush that ends in an ace, which means it has to start with a rank of 10
+        cards = [
+            Card(rank = "10", suit = "Clubs"),
+            Card(rank = "Jack", suit = "Clubs"),
+            Card(rank = "Queen", suit = "Clubs"),
+            Card(rank = "King", suit = "Clubs"),
+            Card(rank = "Ace", suit = "Clubs")
+        ]
+
+        hand = Hand(cards = cards)
+
+        self.assertEqual(
+            hand.best_rank(),
+            "Royal Flush"
         )

@@ -1,4 +1,15 @@
 class Hand():
+    """
+     A class collects a list of 
+     cards and provides some methods to 
+     evaluate the quality of the cards in
+     the player's hand, so to say.
+
+     ---
+
+     Attribute
+        cards: str[]
+    """
     def __init__(self, cards):
         copy = cards[:]
         copy.sort()
@@ -7,6 +18,8 @@ class Hand():
     @property
     def _rank_validations_from_best_to_worst(self):
         return(
+            ("Royal Flush", self._royal_flush),
+            ("Straight Flush", self._straight_flush),
             ("Four of a Kind", self._four_of_a_kind),
             ("Full House", self._full_house),
             ("Flush", self._flush),
@@ -14,7 +27,8 @@ class Hand():
             ("Three of a Kind", self._three_of_a_kind),
             ("Two Pair", self._two_pair),
             ("Pair", self._pair),
-            ("High Card", self._high_card)
+            ("High Card", self._high_card),
+            ("No Cards", self._no_cards)
         )
 
     def best_rank(self):
@@ -23,6 +37,18 @@ class Hand():
             name, validator_func = rank
             if validator_func():
                 return name
+
+    def _royal_flush(self):
+        is_straight_flush = self._straight_flush()
+        if not is_straight_flush:
+            return False
+
+        is_royal = self.cards[-1].rank == "Ace"
+        return is_straight_flush and is_royal
+
+    def _straight_flush(self):
+        # Straight flush is a combo of straight & flush
+        return self._flush() and self._straight()
 
     def _four_of_a_kind(self):
         ranks_with_four_of_kind = self._ranks_with_count(4)
@@ -65,7 +91,10 @@ class Hand():
         return len(ranks_with_pairs) == 1
 
     def _high_card(self):
-        return True
+        return len(self.cards) >= 2
+
+    def _no_cards(self):
+        return len(self.cards) == 0
 
     def _ranks_with_count(self, count):
         return {

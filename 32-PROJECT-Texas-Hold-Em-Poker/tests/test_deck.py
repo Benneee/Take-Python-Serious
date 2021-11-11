@@ -1,4 +1,6 @@
 import unittest
+from unittest.mock import patch
+
 from poker.card import Card
 from poker.deck import Deck
 
@@ -20,4 +22,23 @@ class DeckTest(unittest.TestCase):
         self.assertEqual(
             deck.cards,
             [card]
+        )
+
+
+    @patch('random.shuffle')
+    def test_shuffles_card_in_random_order(self, mock_shuffle):
+        deck = Deck()
+
+        cards = [
+            Card(rank="Ace", suit="Spades"),
+            Card(rank="8", suit="Diamonds")
+        ]
+        deck.add_cards(cards)
+
+        deck.shuffle()
+
+        # We expect that shuffle is called once
+        # And that it was invoked with some argument
+        mock_shuffle.assert_called_once_with(
+            cards
         )

@@ -173,3 +173,20 @@ class HandTest(unittest.TestCase):
             hand.best_rank(),
             "Straight Flush"
         )
+
+    def test_figures_out_royal_flush_is_best_rank(self):
+        # Royal flush is a straight flush that ends in an ace, which means it has to start with a rank of 10
+        cards = [
+            Card(rank = "10", suit = "Clubs"),
+            Card(rank = "Jack", suit = "Clubs"),
+            Card(rank = "Queen", suit = "Clubs"),
+            Card(rank = "King", suit = "Clubs"),
+            Card(rank = "Ace", suit = "Clubs")
+        ]
+
+        hand = Hand(cards = cards)
+
+        self.assertEqual(
+            hand.best_rank(),
+            "Royal Flush"
+        )

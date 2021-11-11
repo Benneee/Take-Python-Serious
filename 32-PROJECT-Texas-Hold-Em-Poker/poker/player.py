@@ -4,4 +4,4 @@ class Player():
         self.hand = hand
 
     def best_hand(self):
-        self.hand.best_rank()
+        return self.hand.best_rank()

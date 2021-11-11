@@ -22,6 +22,13 @@ class HandTest(unittest.TestCase):
             ]
         )
 
+    def test_figures_out_no_card_is_best_rank(self):
+        hand = Hand(cards = [])
+        self.assertEqual(
+            hand.best_rank(),
+            "No Cards"
+        )
+
     def test_figures_out_high_card_is_best_card(self):
         cards = [
             Card(rank= "Ace", suit= "Diamonds"),

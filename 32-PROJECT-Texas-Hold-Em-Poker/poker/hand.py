@@ -1,4 +1,15 @@
 class Hand():
+    """
+     A class collects a list of 
+     cards and provides some methods to 
+     evaluate the quality of the cards in
+     the player's hand, so to say.
+
+     ---
+
+     Attribute
+        cards: str[]
+    """
     def __init__(self, cards):
         copy = cards[:]
         copy.sort()

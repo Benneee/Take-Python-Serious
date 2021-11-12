@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import MagicMock, call
 
+from poker.card import Card
 from poker.game_round import GameRound
 
 
@@ -46,10 +47,28 @@ class GameRoundTest(unittest.TestCase):
 
     
     def test_deals_two_initial_cards_from_deck_to_each_player(self):
+        first_two_cards = [
+            Card(rank = "2", suit = "Hearts"),
+            Card(rank = "6", suit = "Spades")
+        ]
+
+        next_two_cards = [
+            Card(rank = "9", suit = "Diamonds"),
+            Card(rank = "4", suit = "Spades")
+        ]
+
         mock_deck = MagicMock()
+        mock_deck.remove_cards.side_effect = [
+            first_two_cards,
+            next_two_cards
+        ]
+
+        mock_player1 = MagicMock()
+        mock_player2 = MagicMock()
+
         players = [
-            MagicMock(),
-            MagicMock()
+            mock_player1,
+            mock_player2
         ]
 
         game_round = GameRound(
@@ -66,3 +85,10 @@ class GameRoundTest(unittest.TestCase):
         mock_deck.remove_cards.assert_has_calls([
             call(2), call(2)
         ])
+
+        mock_player1.add_cards.assert_called_with(
+            first_two_cards
+        )
+        mock_player2.add_cards.assert_called_with(
+            next_two_cards
+        )

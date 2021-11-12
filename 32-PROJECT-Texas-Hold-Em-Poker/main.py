@@ -1,5 +1,6 @@
 from poker.card import Card
 from poker.deck import Deck
+from poker.game_round import GameRound
 from poker.hand import Hand
 from poker.player import Player
 
@@ -12,5 +13,9 @@ hand2 = Hand()
 
 ayo = Player(name = "Ayo", hand = hand1)
 bola = Player(name = "Bola", hand = hand2)
+players = [ayo, bola]
 
-#  from main import deck, cards, hand1, hand2, ayo, bola
+game_round = GameRound(deck = deck, players = players)
+game_round.play()
+
+#  from main import deck, cards, game_round, hand1, hand2, ayo, bola

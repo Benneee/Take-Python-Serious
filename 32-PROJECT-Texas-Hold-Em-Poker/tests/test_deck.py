@@ -7,6 +7,13 @@ from poker.deck import Deck
 # command to run tests in a folder:
 # python3 -m unittest <name-of-folder>
 class DeckTest(unittest.TestCase):
+    def test_deck_length_is_equal_to_cards_count(self):
+        deck = Deck()
+        self.assertEqual(
+            len(deck),
+            0
+        )
+
     def test_stores_no_cards_at_start(self):
         deck = Deck()
         self.assertEqual(

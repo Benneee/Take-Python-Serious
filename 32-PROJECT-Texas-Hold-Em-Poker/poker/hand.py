@@ -17,6 +17,10 @@ class Hand():
         # self.cards = copy
         self.cards = []
 
+    def __repr__(self):
+        cards_as_strings = [str(card) for card in self.cards]
+        return ", ".join(cards_as_strings)
+
     def add_cards(self, cards):
         copy = self.cards[:]
         copy.extend(cards)

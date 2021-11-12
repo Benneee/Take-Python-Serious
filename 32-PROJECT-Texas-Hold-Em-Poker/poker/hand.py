@@ -10,8 +10,16 @@ class Hand():
      Attribute
         cards: str[]
     """
-    def __init__(self, cards):
-        copy = cards[:]
+    def __init__(self):
+        # We will move the sorting to the add_cards method
+        # copy = cards[:]
+        # copy.sort()
+        # self.cards = copy
+        self.cards = []
+
+    def add_cards(self, cards):
+        copy = self.cards[:]
+        copy.extend(cards)
         copy.sort()
         self.cards = copy
 

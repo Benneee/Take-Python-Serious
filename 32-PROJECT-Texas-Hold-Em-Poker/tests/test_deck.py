@@ -24,6 +24,24 @@ class DeckTest(unittest.TestCase):
             [card]
         )
 
+    def test_removes_specified_number_of_cards_from_deck(self):
+        ace = Card(rank = "Ace", suit = "Spades")
+        eight = Card(rank = "8", suit = "Diamonds")
+        cards = [ace, eight]
+        
+        deck = Deck()
+        deck.add_cards(cards)
+
+        self.assertEqual(
+            deck.remove_cards(1),
+            [ace]
+        )
+
+        self.assertEqual(
+            deck.cards,
+            [eight]
+        )
+
 
     @patch('random.shuffle')
     def test_shuffles_card_in_random_order(self, mock_shuffle):

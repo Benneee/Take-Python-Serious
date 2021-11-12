@@ -10,3 +10,6 @@ class Player():
     def add_cards(self, cards):
         # don't need a return here since we just want to give the hand object some cards
         self.hand.add_cards(cards)
+
+    def wants_to_fold(self):
+        return False

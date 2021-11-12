@@ -92,3 +92,23 @@ class GameRoundTest(unittest.TestCase):
         mock_player2.add_cards.assert_called_with(
             next_two_cards
         )
+
+    def test_removes_player_if_not_willing_to_make_bet(self):
+        deck = MagicMock()
+        player1 = MagicMock()
+        player2 = MagicMock()
+
+        player1.wants_to_fold.return_value = True
+        player2.wants_to_fold.return_value = False
+
+        players = [player1, player2]
+        game_round = GameRound(
+            deck = deck,
+            players = players
+        )
+        game_round.play()
+
+        self.assertEqual(
+            game_round.players,
+            [player2]
+        )

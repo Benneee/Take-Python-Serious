@@ -37,3 +37,10 @@ class PlayerTest(unittest.TestCase):
 
         # To ensure the cards are passed from the player to the hand
         mock_hand.add_cards.assert_called_once_with(cards)
+
+    def test_decides_to_continue_or_drop_out_of_game(self):
+        player = Player(name = "Sharon", hand = Hand())
+        self.assertEqual(
+            player.wants_to_fold(),
+            False
+        )

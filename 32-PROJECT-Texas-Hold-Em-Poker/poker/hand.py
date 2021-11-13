@@ -3,7 +3,8 @@ from poker.validators import (
     NoCardsValidator, 
     PairValidator,
     TwoPairValidator,
-    ThreeOfAKindValidator
+    ThreeOfAKindValidator,
+    StraightValidator
 )
 
 class Hand():
@@ -43,7 +44,7 @@ class Hand():
             ("Four of a Kind", self._four_of_a_kind),
             ("Full House", self._full_house),
             ("Flush", self._flush),
-            ("Straight", self._straight),
+            ("Straight", StraightValidator(cards = self.cards).is_valid),
             ("Three of a Kind", ThreeOfAKindValidator(cards = self.cards).is_valid),
             ("Two Pair", TwoPairValidator(cards = self.cards).is_valid),
             ("Pair", PairValidator(cards = self.cards).is_valid),
@@ -69,7 +70,7 @@ class Hand():
 
     def _straight_flush(self):
         # Straight flush is a combo of straight & flush
-        return self._flush() and self._straight()
+        return self._flush() and StraightValidator(cards = self.cards).is_valid()
 
     def _four_of_a_kind(self):
         ranks_with_four_of_kind = self._ranks_with_count(4)
@@ -84,19 +85,6 @@ class Hand():
             for suit, suit_count in self._card_suit_counts.items() if suit_count >= 5
         }
         return len(suits_that_occur_5_or_more_times) == 1
-
-    def _straight(self):
-        if len(self.cards) < 5:
-            return False
-
-        rank_indexes = [card.rank_index for card in self.cards]
-        starting_rank_index = rank_indexes[0]
-        last_rank_index = rank_indexes[-1]
-        straight_consective_indexes = list(
-            range(starting_rank_index, last_rank_index + 1)
-        )
-        return rank_indexes == straight_consective_indexes
-
 
     def _ranks_with_count(self, count):
         return {

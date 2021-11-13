@@ -43,21 +43,6 @@ class HandTest(unittest.TestCase):
             ]
         )
 
-    def test_figures_out_pair_card_is_best_card(self):
-        cards = [
-            Card(rank= "Ace", suit= "Spades"),
-            Card(rank= "Ace", suit= "Clubs")
-        ]
-
-        hand = Hand()
-
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Pair"
-        )
-
     def test_figures_out_two_pair_is_best_rank(self):
         cards = [
             Card(rank= "Ace", suit= "Spades"),

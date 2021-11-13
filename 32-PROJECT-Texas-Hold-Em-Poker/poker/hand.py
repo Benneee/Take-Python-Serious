@@ -2,7 +2,8 @@ from poker.validators import (
     HighCardValidator, 
     NoCardsValidator, 
     PairValidator,
-    TwoPairValidator
+    TwoPairValidator,
+    ThreeOfAKindValidator
 )
 
 class Hand():
@@ -43,7 +44,7 @@ class Hand():
             ("Full House", self._full_house),
             ("Flush", self._flush),
             ("Straight", self._straight),
-            ("Three of a Kind", self._three_of_a_kind),
+            ("Three of a Kind", ThreeOfAKindValidator(cards = self.cards).is_valid),
             ("Two Pair", TwoPairValidator(cards = self.cards).is_valid),
             ("Pair", PairValidator(cards = self.cards).is_valid),
             ("High Card", HighCardValidator(cards = self.cards).is_valid),
@@ -56,6 +57,7 @@ class Hand():
             name, validator_func = rank
             if validator_func():
                 return name
+
 
     def _royal_flush(self):
         is_straight_flush = self._straight_flush()
@@ -74,17 +76,15 @@ class Hand():
         return len(ranks_with_four_of_kind) == 1
 
     def _full_house(self):
-        return self._three_of_a_kind() and PairValidator(cards = self.cards).is_valid()
+        return ThreeOfAKindValidator(cards = self.cards).is_valid() and PairValidator(cards = self.cards).is_valid()
 
     def _flush(self):
         suits_that_occur_5_or_more_times = {
             suit: suit_count
             for suit, suit_count in self._card_suit_counts.items() if suit_count >= 5
         }
-
         return len(suits_that_occur_5_or_more_times) == 1
 
-    
     def _straight(self):
         if len(self.cards) < 5:
             return False
@@ -97,9 +97,6 @@ class Hand():
         )
         return rank_indexes == straight_consective_indexes
 
-    def _three_of_a_kind(self):
-        ranks_with_three_of_kind = self._ranks_with_count(3)
-        return len(ranks_with_three_of_kind) == 1
 
     def _ranks_with_count(self, count):
         return {

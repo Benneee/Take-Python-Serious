@@ -1,4 +1,4 @@
-from poker.validators import HighCardValidator, NoCardsValidator
+from poker.validators import (HighCardValidator, NoCardsValidator, PairValidator)
 
 class Hand():
     """
@@ -40,7 +40,7 @@ class Hand():
             ("Straight", self._straight),
             ("Three of a Kind", self._three_of_a_kind),
             ("Two Pair", self._two_pair),
-            ("Pair", self._pair),
+            ("Pair", PairValidator(cards = self.cards).is_valid),
             ("High Card", HighCardValidator(cards = self.cards).is_valid),
             ("No Cards", NoCardsValidator(cards = self.cards).is_valid)
         )
@@ -69,7 +69,7 @@ class Hand():
         return len(ranks_with_four_of_kind) == 1
 
     def _full_house(self):
-        return self._three_of_a_kind() and self._pair()
+        return self._three_of_a_kind() and PairValidator(cards = self.cards).is_valid()
 
     def _flush(self):
         suits_that_occur_5_or_more_times = {
@@ -99,10 +99,6 @@ class Hand():
     def _two_pair(self):
         ranks_with_pairs = self._ranks_with_count(2)
         return len(ranks_with_pairs) == 2
-    
-    def _pair(self):
-        ranks_with_pairs = self._ranks_with_count(2)
-        return len(ranks_with_pairs) == 1
 
     def _ranks_with_count(self, count):
         return {

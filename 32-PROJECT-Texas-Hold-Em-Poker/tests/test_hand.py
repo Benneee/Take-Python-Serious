@@ -43,23 +43,6 @@ class HandTest(unittest.TestCase):
             ]
         )
 
-    def test_figures_out_straight_is_the_best_rank(self):
-        cards = [
-            Card(rank = "6", suit = "Hearts"),
-            Card(rank = "7", suit = "Diamonds"),
-            Card(rank = "8", suit = "Spades"),
-            Card(rank = "9", suit = "Clubs"),
-            Card(rank = "10", suit = "Clubs"),
-        ]
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Straight"
-        )
-
     def test_does_not_deem_two_consecutive_cards_as_straight(self):
         cards = [
             Card(rank = "6", suit = "Hearts"),

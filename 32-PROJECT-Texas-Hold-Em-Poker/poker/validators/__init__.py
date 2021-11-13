@@ -8,3 +8,4 @@ from .three_of_kind_validator import ThreeOfAKindValidator
 from .straight_validator import StraightValidator
 from .flush_validator import FlushValidator
 from .full_house_validator import FullHouseValidator
+from .four_of_a_kind_validator import FourOfAKindValidator

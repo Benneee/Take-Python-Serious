@@ -7,7 +7,8 @@ from poker.validators import (
     StraightValidator,
     FlushValidator,
     FullHouseValidator,
-    FourOfAKindValidator
+    FourOfAKindValidator,
+    StraightFlushValidator,
 )
 
 class Hand():
@@ -43,7 +44,7 @@ class Hand():
     def _rank_validations_from_best_to_worst(self):
         return(
             ("Royal Flush", self._royal_flush),
-            ("Straight Flush", self._straight_flush),
+            ("Straight Flush", StraightFlushValidator(cards = self.cards).is_valid),
             ("Four of a Kind", FourOfAKindValidator(cards = self.cards).is_valid),
             ("Full House", FullHouseValidator(cards = self.cards).is_valid),
             ("Flush", FlushValidator(cards = self.cards).is_valid),
@@ -64,13 +65,9 @@ class Hand():
 
 
     def _royal_flush(self):
-        is_straight_flush = self._straight_flush()
+        is_straight_flush = StraightFlushValidator(cards = self.cards).is_valid()
         if not is_straight_flush:
             return False
 
         is_royal = self.cards[-1].rank == "Ace"
         return is_straight_flush and is_royal
-
-    def _straight_flush(self):
-        # Straight flush is a combo of straight & flush
-        return FlushValidator(cards = self.cards).is_valid() and StraightValidator(cards = self.cards).is_valid()

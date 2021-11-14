@@ -40,10 +40,6 @@ class Hand():
     )
     
     def __init__(self):
-        # We will move the sorting to the add_cards method
-        # copy = cards[:]
-        # copy.sort()
-        # self.cards = copy
         self.cards = []
 
     def __repr__(self):
@@ -57,7 +53,11 @@ class Hand():
         self.cards = copy
     
     def best_rank(self):
-        for validator_klass in self.VALIDATORS:
+        for index, validator_klass in enumerate(self.VALIDATORS):
             validator = validator_klass(cards = self.cards)
             if validator.is_valid():
-                return validator.name
+                return (
+                    index,
+                    validator.name,
+                    validator.valid_cards()
+                )

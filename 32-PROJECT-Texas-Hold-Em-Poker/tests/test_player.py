@@ -44,3 +44,20 @@ class PlayerTest(unittest.TestCase):
             player.wants_to_fold(),
             False
         )
+        
+    def test_is_sorted_by_best_hand(self):
+        mock_hand1 = MagicMock()
+        mock_hand1.best_rank.return_value = (0, "Royal Flush", [])
+        
+        mock_hand2 = MagicMock()
+        mock_hand2.best_rank.return_value = (2, "Four of a Kind", [])
+        
+        player1 = Player(name = "Kim", hand = mock_hand1)
+        player2 = Player(name = "Jen", hand = mock_hand2)
+        
+        players = [player1, player2]
+        
+        self.assertEqual(
+            max(players),
+            player1
+        )

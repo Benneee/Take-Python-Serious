@@ -1,0 +1,4 @@
+Web scraping means using a programming language to access a website, download its content and parse relevant data from it.
+We use the scrapy library to perform this action in Python
+
+A spider is a python class that will help us crawl websites

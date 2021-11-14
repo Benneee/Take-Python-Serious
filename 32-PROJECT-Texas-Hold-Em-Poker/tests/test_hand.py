@@ -57,5 +57,12 @@ class HandTest(unittest.TestCase):
         
         self.assertEqual(
             hand.best_rank(),
-            "Pair"
+            (
+                0,
+                "Pair",
+                [
+                    ace_of_hearts,
+                    ace_of_spades
+                ]
+            )
         )

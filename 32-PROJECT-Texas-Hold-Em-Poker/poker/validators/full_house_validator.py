@@ -4,6 +4,7 @@ from poker.validators import ThreeOfAKindValidator, PairValidator
 class FullHouseValidator():
     def __init__(self, cards):
         self.cards = cards
+        self.name = "Full House"
         
     def is_valid(self):
         return ThreeOfAKindValidator(cards = self.cards).is_valid() and PairValidator(cards = self.cards).is_valid()
